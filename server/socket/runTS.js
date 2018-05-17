@@ -6,7 +6,7 @@ var fs = require('fs');
 const async = require("async")
 var Docker = require('dockerode');
 
-var socket = process.env.DOCKER_SOCKET || '/var/run/docker.sock';
+var socket = '/var/run/docker.sock';
 
 var path = require('path')
 var root = path.resolve(__dirname)

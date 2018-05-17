@@ -5,6 +5,7 @@ import axios from 'axios'
 var fs = require('fs');
 const async = require("async")
 var Docker = require('dockerode');
+
 var socket = process.env.DOCKER_SOCKET || '/var/run/docker.sock';
 
 var path = require('path')
@@ -28,6 +29,7 @@ var inputDir2 = root+ '/../testFolder/' + 'code/dershare:/usr/src/app'
 // inputDir2 = "/Users/eunwooson/Desktop/estimator/idep-node/server/socket/../testFolder/code/dershare"+":/usr/src/app"
 outputDir2 = "/home/pbshop1001/dershare-report/server/testFolder/code/output/dershare"+":/usr/src/app/output"
 inputDir2 = "/home/pbshop1001/dershare-report/server/testFolder/code/dershare"+":/usr/src/app"
+
 var docker = new Docker({
   socketPath: socket
 })
@@ -93,6 +95,7 @@ export function runTS(io) {
         });
         next()
       };
+
       socket.emit('docker_result_msg', {
         msg: "Start summary.R process"
       });

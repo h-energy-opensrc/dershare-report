@@ -14,9 +14,11 @@ cleanObj <- DataClean$new("1216119713")
 exp <- DataExploratary$new(cleanObj$data)
 
 cat("== Min, Max, Sum Plot ==")
+
 png("./output/maxByDays.png")
 exp$getPlotByDays('2016-01', type="max")
 graphics.off()
+
 png("./output/minByDays.png")
 exp$getPlotByDays('2016-01', type="min")
 graphics.off()

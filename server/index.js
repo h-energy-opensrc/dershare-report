@@ -22,9 +22,9 @@ import {runTS} from'./socket/runTS.js'
 var db;
 
 start(io);
-runAsync(io);
-runiDep(io);
-runThw(io);
+// runAsync(io);
+// runiDep(io);
+// runThw(io);
 runTS(io);
 
 app.set('port', port)

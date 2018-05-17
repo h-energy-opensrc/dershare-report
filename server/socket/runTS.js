@@ -288,7 +288,7 @@ export function runTS(io) {
           ], myStream, Setting)
             .then(function (container) {
               setTimeout(function(){
-                  console.log("1", 'is Done')
+                  console.log("2", 'is Done')
                   callback(null, 'data', 'converted to array')
               }, 300)
             })
@@ -304,52 +304,12 @@ export function runTS(io) {
               var obj = JSON.parse(data);
               // console.log(obj)
               socket.emit('feasible', {
-                      image: true,
-                      buffer: obj
+                image: true,
+                buffer: obj
               });
               fs.unlinkSync(targetResult);
           })
 
-          
-          // var fNames = ["maxByDays.png", "minByDays.png", "sumByDays.png"]
-          // fNames.forEach(fName =>{
-          //   fs.readFile(__dirname + '/../testFolder/code/output/dershare/' 
-          //     + fName , function (err, buf) {
-          //     console.log(err)
-          //     socket.emit('imagePre', {
-          //       image: true,
-          //       // id: input.id,
-          //       type: "scatter",
-          //       buffer: buf.toString('base64')
-          //     });
-          //   });
-          // })
-
-          // var tsNames = ["year_2015.png", "year_2016.png", "year_2017.png", "year_2018.png"]
-          // tsNames.forEach(fName =>{
-          //   fs.readFile(__dirname + '/../testFolder/code/output/dershare/' 
-          //     + fName , function (err, buf) {
-          //     console.log(err)
-          //     socket.emit('imageHeat', {
-          //       image: true,
-          //       // id: input.id,
-          //       type: "scatter",
-          //       buffer: buf.toString('base64')
-          //     })
-          //   })
-          // })
-        //   const csv=require('csvtojson')
-        //   csv()
-        //   .fromFile(__dirname + '/../testFolder/code/output/dershare/fitmos.csv')
-        //   .on('json',(jsonObj)=>{
-        //     // combine csv header row and csv line to a json objects
-        //     // jsonObj.a ==> 1 or 4
-        //     console.log(jsonObj)
-        //     socket.emit('prdCSV', {
-        //       image: true,
-        //       buffer: jsonObj
-        //     });
-        //   })
           callback(null, 'filename');
           // callback(null, {'file':results.write_file, 'email':'user@example.com'});
         }]

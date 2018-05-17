@@ -2,7 +2,7 @@ import axios from 'axios'
 var Docker = require('dockerode');
 var socket = process.env.DOCKER_SOCKET || '/var/run/docker.sock';
 
-const host = process.env.HOST || '127.0.0.1'
+const host = process.env.HOST || '0.0.0.0'
 const port = process.env.PORT || 3001
 
 var docker = new Docker({

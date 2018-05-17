@@ -122,7 +122,7 @@ export default {
   data() {
     return{ 
       //host: 'http://bioinformatics.sdstate.edu:8000',
-      host: 'localhost:3001',
+      host: '0.0.0.0:3001',
       crntContainerID:"", decoded: "", cnn:false, msg:"", msg_docker:{}, socket:{}, msg_docker_result:"", cmd:""}
   },
   methods: {

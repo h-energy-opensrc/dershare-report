@@ -50,6 +50,8 @@ export function runTS(io) {
 
     // Time Series Summary
     socket.on('ts-summary', function (input) {
+      console.log(outputDir)
+      console.log(inputDir)
       const Setting = {
         Tty: true,
         'Volumes': {
@@ -82,11 +84,10 @@ export function runTS(io) {
       };
       
       async.auto({
-
         pre_process: function (callback) {
             console.log("pre_process")
           docker.run('kruny1001/plumber', ['Rscript', '--vanilla', 'summary.R'
-            , input.toString()
+            , outputDir, inputDir
           ], myStream, Setting)
             .then(function (container) {
               setTimeout(function(){

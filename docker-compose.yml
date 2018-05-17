@@ -15,4 +15,5 @@ services:
     expose:
       - "80"
       - "3001"
+    
     command: ["npm", "start"]

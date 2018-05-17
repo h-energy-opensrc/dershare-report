@@ -19,16 +19,17 @@ var inputDir = root+ '/../testFolder/' + 'code/dershare:/usr/local/src/myscripts
 // outputDir = "/Users/eunwooson/Desktop/estimator/idep-node/server/socket/../testFolder/code/output/dershare:/usr/local/src/myscripts/output"
 // inputDir = "/Users/eunwooson/Desktop/estimator/idep-node/server/socket/../testFolder/code/dershare:/usr/local/src/myscripts"
 
-outputDir = "/home/pbshop1001/dershare-report/server/testFolder/code/output/dershare"+":/usr/local/src/myscripts/output"
-inputDir = "/home/pbshop1001/dershare-report/server/testFolder/code/dershare"+":/usr/local/src/myscripts/output"
+// outputDir = "/home/pbshop1001/dershare-report/server/testFolder/code/output/dershare"+":/usr/local/src/myscripts/output"
+// inputDir = "/home/pbshop1001/dershare-report/server/testFolder/code/dershare"+":/usr/local/src/myscripts/output"
 
 var outputDir2 = root+ '/../testFolder/' + outputTarget + ':/usr/src/app/output'
 var inputDir2 = root+ '/../testFolder/' + 'code/dershare:/usr/src/app'
 
 // outputDir2 = "/Users/eunwooson/Desktop/estimator/idep-node/server/socket/../testFolder/code/output/dershare"+":/usr/src/app/output"
 // inputDir2 = "/Users/eunwooson/Desktop/estimator/idep-node/server/socket/../testFolder/code/dershare"+":/usr/src/app"
-outputDir2 = "/home/pbshop1001/dershare-report/server/testFolder/code/output/dershare"+":/usr/src/app/output"
-inputDir2 = "/home/pbshop1001/dershare-report/server/testFolder/code/dershare"+":/usr/src/app"
+
+// outputDir2 = "/home/pbshop1001/dershare-report/server/testFolder/code/output/dershare"+":/usr/src/app/output"
+// inputDir2 = "/home/pbshop1001/dershare-report/server/testFolder/code/dershare"+":/usr/src/app"
 
 var docker = new Docker({
   socketPath: socket
@@ -131,7 +132,7 @@ export function runTS(io) {
           })
 
           var tsNames = ["year_2015.png", "year_2016.png", "year_2017.png", "year_2018.png"]
-          tsNames.forEach(fName =>{
+          tsNames.forEach(fName => {
             fs.readFile(__dirname + '/../testFolder/code/output/dershare/' 
               + fName , function (err, buf) {
               console.log(err)

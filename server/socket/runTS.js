@@ -13,9 +13,10 @@ var root = path.resolve(__dirname)
 
 var outputTarget = "code/output/dershare";
 var codedir = __dirname + "/../testFolder/"
+
 var outputDir = root+ '/../testFolder/' + outputTarget + ':/usr/local/src/myscripts/output'
 var inputDir = root+ '/../testFolder/' + 'code/dershare:/usr/local/src/myscripts'
-
+ 
 // outputDir = "/Users/eunwooson/Desktop/estimator/idep-node/server/socket/../testFolder/code/output/dershare:/usr/local/src/myscripts/output"
 // inputDir = "/Users/eunwooson/Desktop/estimator/idep-node/server/socket/../testFolder/code/dershare:/usr/local/src/myscripts"
 
@@ -66,6 +67,7 @@ export function runTS(io) {
 
     // Time Series Summary
     socket.on('ts-summary', function (input) {
+      console.l;
       const Setting = {
         Tty: true,
         'Volumes': {
@@ -74,7 +76,7 @@ export function runTS(io) {
         'HostConfig': {
           'Binds': [
             // '/Users/eunwooson/Downloads/idep-node/server/testFolder/' + outputDir + ':/usr/local/src/myscripts/output',
-            outputDir,
+            // outputDir,
             inputDir
             // root+ '/../testFolder/' + outputDir + ':/usr/local/src/myscripts/output',
             // root+ '/../testFolder/' + 'code/dershare:/usr/local/src/myscripts',
@@ -144,28 +146,13 @@ export function runTS(io) {
               })
             })
           })
-        //   const csv=require('csvtojson')
-        //   csv()
-        //   .fromFile(__dirname + '/../testFolder/code/output/dershare/fitmos.csv')
-        //   .on('json',(jsonObj)=>{
-        //     // combine csv header row and csv line to a json objects
-        //     // jsonObj.a ==> 1 or 4
-        //     console.log(jsonObj)
-        //     socket.emit('prdCSV', {
-        //       image: true,
-        //       buffer: jsonObj
-        //     });
-        //   })
           callback(null, 'filename');
-          // callback(null, {'file':results.write_file, 'email':'user@example.com'});
         }]
       }, function (err, results) {
         console.log('err = ', err);
         console.log('results = ', results);
-      });
-      
+      });      
     })
-
 
     socket.on('biz-summary', function (input) {
       console.log('biz-summary')
@@ -265,14 +252,17 @@ export function runTS(io) {
     })
 
     socket.on('biz-analysis-dershare', function (input) {
-      var dockerImg = 'py3-est'
+      var dockerImg = 'kruny1001/py3-est'
       const Setting = {
         Tty: true,
         'Volumes': {
           '/usr/src/app': {}
         },
         'HostConfig': {
-          'Binds': [outputDir2, inputDir2]
+          'Binds': [
+            //outputDir2, 
+            inputDir2
+          ]
         }
       }
 
@@ -292,7 +282,7 @@ export function runTS(io) {
       
       async.auto({
         pre_process: function (callback) {
-          console.log("pre_process")
+          console.log("biz-analysis-dershare.py")
           docker.run(dockerImg, ['python', 'biz-analysis-dershare.py'
             , input.toString()
           ], myStream, Setting)
@@ -312,13 +302,13 @@ export function runTS(io) {
                 console.log(err)
                // error handling
               var obj = JSON.parse(data);
-              console.log(obj)
+              // console.log(obj)
               socket.emit('feasible', {
                       image: true,
                       buffer: obj
               });
               fs.unlinkSync(targetResult);
-          });
+          })
 
           
           // var fNames = ["maxByDays.png", "minByDays.png", "sumByDays.png"]

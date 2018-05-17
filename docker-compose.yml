@@ -3,11 +3,11 @@ services:
   nodeapp:
     build: .
     restart: always 
-    image: kruny1001/idep-comp
+    # image: kruny1001/idep-comp
     volumes: 
-       - ./pages:/usr/src/app/pages
-       - ./plugins:/usr/src/app/plugins
-       - ./server:/usr/src/app/server
+      #  - ./pages:/usr/src/app/pages
+      #  - ./plugins:/usr/src/app/plugins
+       - ./server/testFolder/code:/usr/src/app/server/testFolder/code
        - /var/run/docker.sock:/var/run/docker.sock:ro # docker api
     ports:
        - "80:3001"
@@ -15,5 +15,4 @@ services:
     expose:
       - "80"
       - "3001"
-    
     command: ["npm", "start"]

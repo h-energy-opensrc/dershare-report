@@ -105,7 +105,7 @@
                 
               </div>
               <div class="mv2 measure ">
-                <label for="name" class="f6 b db mb2"> 관리비(원) </label>
+                <label for="name" class="f6 b db mb2"> 관리비(%) </label>
                 <input v-model="input_feasible.simulation.construction.manage" id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="name-desc">
                 
               </div>
@@ -220,7 +220,7 @@
               </div>
             </div>
             
-            <h3 class="code underline  intro--headline karla fw6 measure-narrow lh-title pb3"> k-Means </h3>
+            <!-- <h3 class="code underline  intro--headline karla fw6 measure-narrow lh-title pb3"> k-Means </h3>
             <div class="left--expand w-100 center">
             </div>
             
@@ -229,7 +229,7 @@
               <div class="ma1"  v-for="i in imagePca" >
                 <img style="max-width: 400px" class="center mw-80" alt="night sky over water" :src='i'>
               </div>
-            </div>
+            </div> -->
           </section>
           
         </div>
@@ -344,7 +344,7 @@ export default {
       containers: [],
       msg_docker_result: "",
       //host: 'http://bioinformatics.sdstate.edu:8000',
-      host: "35.200.80.26:3001"
+      host: "0.0.0.0:3001"
     };
   },
   mounted() {
@@ -355,19 +355,18 @@ export default {
     });
 
     vm.socket.on("feasible", function(data) {
-
       console.log(data)
       vm.feasibleResult = data
       // data.HeaderMenu
       var tempResult =data.buffer
       console.log(tempResult[0].cumul_cash_flow)
-      vm.socket.emit("biz-summary", tempResult[0].cumul_cash_flow)
+      // vm.socket.emit("biz-summary", tempResult[0].cumul_cash_flow)
     });
     
-
     vm.socket.on("messages", function(data) {
       vm.msg = data;
     });
+
     vm.socket.on("docker_result_msg", function(data) {
       vm.cnn = data.cnn;
       vm.msg_docker_result +=

@@ -21,7 +21,13 @@ var inputDir = root+ '/../testFolder/' + 'code/dershare:/usr/local/src/myscripts
 outputDir = "/home/pbshop1001/dershare-report/server/testFolder/code/output/dershare"+":/usr/local/src/myscripts/output"
 inputDir = "/home/pbshop1001/dershare-report/server/testFolder/code/dershare"+":/usr/local/src/myscripts/output"
 
+var outputDir2 = root+ '/../testFolder/' + outputTarget + ':/usr/src/app/output'
+var inputDir2 = root+ '/../testFolder/' + 'code/dershare:/usr/src/app'
 
+// outputDir2 = "/Users/eunwooson/Desktop/estimator/idep-node/server/socket/../testFolder/code/output/dershare"+":/usr/src/app/output"
+// inputDir2 = "/Users/eunwooson/Desktop/estimator/idep-node/server/socket/../testFolder/code/dershare"+":/usr/src/app"
+outputDir2 = "/home/pbshop1001/dershare-report/server/testFolder/code/output/dershare"+":/usr/src/app/output"
+inputDir2 = "/home/pbshop1001/dershare-report/server/testFolder/code/dershare"+":/usr/src/app"
 var docker = new Docker({
   socketPath: socket
 })
@@ -251,13 +257,10 @@ export function runTS(io) {
     })
 
     socket.on('biz-analysis-dershare', function (input) {
-      var outputDir2 = root+ '/../testFolder/' + outputTarget + ':/usr/src/app/output'
-      var inputDir2 = root+ '/../testFolder/' + 'code/dershare:/usr/src/app'
+      
       var dockerImg = 'py3-est'
-      // outputDir2 = "/Users/eunwooson/Desktop/estimator/idep-node/server/socket/../testFolder/code/output/dershare"+":/usr/src/app/output"
-      // inputDir2 = "/Users/eunwooson/Desktop/estimator/idep-node/server/socket/../testFolder/code/dershare"+":/usr/src/app"
-      outputDir2 = "/home/pbshop1001/dershare-report/server/testFolder/code/output/dershare"+":/usr/src/app/output"
-      inputDir2 = "/home/pbshop1001/dershare-report/server/testFolder/code/dershare"+":/usr/src/app"
+      
+      
 
       const Setting = {
         Tty: true,
@@ -298,8 +301,6 @@ export function runTS(io) {
         },
 
         email_link: ['pre_process', function (results, callback) {
-
-          
           var targetResult = __dirname + '/../testFolder/code/dershare/' + 'FeasibilityStudyResult.json'
           fs.readFile(targetResult, 'utf8', 
             function (err, data) {

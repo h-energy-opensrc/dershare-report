@@ -1,0 +1,23 @@
+# dependencies
+node_modules
+
+# logs
+npm-debug.log
+
+# Nuxt build
+.nuxt
+
+# Nuxt generate
+dist
+
+# Backpack build
+build
+
+server/testFolder*
+
+.vscode
+.Rproj.user
+
+
+.vscode
+.nuxt

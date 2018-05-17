@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "grpc": "^1.8.4",
+    "grpc-web-client": "^0.3.1"
+  }
+}

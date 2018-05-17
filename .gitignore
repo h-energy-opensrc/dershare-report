@@ -13,7 +13,14 @@ dist
 # Backpack build
 build
 
-server/testFolder*
+server/testFolder/code/assessment
+
+server/testFolder/code/idep
+
+server/testFolder/code/testData
+
+server/testFolder/code/thw
+server/testFolder/code/First_Try
 
 .vscode
 .Rproj.user

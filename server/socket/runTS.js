@@ -12,8 +12,11 @@ var root = path.resolve(__dirname)
 
 var outputTarget = "code/output/dershare";
 var codedir = __dirname + "/../testFolder/"
-const outputDir = root+ '/../testFolder/' + outputTarget + ':/usr/local/src/myscripts/output'
-const inputDir = root+ '/../testFolder/' + 'code/dershare:/usr/local/src/myscripts'
+var outputDir = root+ '/../testFolder/' + outputTarget + ':/usr/local/src/myscripts/output'
+var inputDir = root+ '/../testFolder/' + 'code/dershare:/usr/local/src/myscripts'
+
+outputDir = "/Users/eunwooson/Desktop/estimator/idep-node/server/socket/../testFolder/code/output/dershare:/usr/local/src/myscripts/output"
+inputDir = "/Users/eunwooson/Desktop/estimator/idep-node/server/socket/../testFolder/code/dershare:/usr/local/src/myscripts"
 
 var docker = new Docker({
   socketPath: socket
@@ -50,8 +53,6 @@ export function runTS(io) {
 
     // Time Series Summary
     socket.on('ts-summary', function (input) {
-      console.log(outputDir)
-      console.log(inputDir)
       const Setting = {
         Tty: true,
         'Volumes': {
@@ -246,9 +247,11 @@ export function runTS(io) {
     })
 
     socket.on('biz-analysis-dershare', function (input) {
-      const outputDir2 = root+ '/../testFolder/' + outputTarget + ':/usr/src/app/output'
-      const inputDir2 = root+ '/../testFolder/' + 'code/dershare:/usr/src/app'
+      var outputDir2 = root+ '/../testFolder/' + outputTarget + ':/usr/src/app/output'
+      var inputDir2 = root+ '/../testFolder/' + 'code/dershare:/usr/src/app'
       var dockerImg = 'py3-est'
+      outputDir2 = "/Users/eunwooson/Desktop/estimator/idep-node/server/socket/../testFolder/code/output/dershare:/usr/src/app/output"
+      inputDir2 = "/Users/eunwooson/Desktop/estimator/idep-node/server/socket/../testFolder/code/dershare:/usr/src/app"
 
       const Setting = {
         Tty: true,
@@ -289,6 +292,8 @@ export function runTS(io) {
         },
 
         email_link: ['pre_process', function (results, callback) {
+
+          
           var targetResult = __dirname + '/../testFolder/code/dershare/' + 'FeasibilityStudyResult.json'
           fs.readFile(targetResult, 'utf8', 
             function (err, data) {
@@ -301,8 +306,10 @@ export function runTS(io) {
                       image: true,
                       buffer: obj
               });
-              // fs.unlinkSync(targetResult);
+              fs.unlinkSync(targetResult);
           });
+
+          
           // var fNames = ["maxByDays.png", "minByDays.png", "sumByDays.png"]
           // fNames.forEach(fName =>{
           //   fs.readFile(__dirname + '/../testFolder/code/output/dershare/' 

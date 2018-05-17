@@ -441,7 +441,6 @@ export default {
       var vm = this;
       // var input = '{"measure_csv":"./ts/1316121995.na.csv","start_month": "2018-06","contract_demand": 5720,"charge": {"demand": 8320,"energy": {"summer": {"light": 56.1,"normal": 109.0,"heavy": 191.1},"spring_fall": {"light": 56.1,"normal": 78.6,"heavy": 109.3},"winter": {"light": 63.1,"normal": 109.2,"heavy": 166.7}}},"simulation": {"pcs": {"min": 0.05,"max": 0.1,"inc": 0.05},"battery": {"min": 0.11,"max": 0.13,"inc": 0.01},"life_cycle": 14,"construction": {"battery": 300000,"pcs": 140000,"install": 133000,"ems": 30000,"manage": 0.03},"ess_share": {"intense_period": 5,"intense_rate": 0.15,"normal_rate": 0.55},"finance": {"borrow_rate": 0.0,"grace_period": 1,"principal_payment_period": 6,"interest_rate": 0.04},"operation": {"sga_rate": 0.01,"depreciation_period": 7,"corp_tex_rate": 0.22}}}'
       var input = JSON.stringify(vm.input_feasible)
-      
       vm.socket.emit("biz-analysis-dershare", input);
     },
     drawPlots() {

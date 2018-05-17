@@ -15,8 +15,12 @@ var codedir = __dirname + "/../testFolder/"
 var outputDir = root+ '/../testFolder/' + outputTarget + ':/usr/local/src/myscripts/output'
 var inputDir = root+ '/../testFolder/' + 'code/dershare:/usr/local/src/myscripts'
 
-outputDir = "/Users/eunwooson/Desktop/estimator/idep-node/server/socket/../testFolder/code/output/dershare:/usr/local/src/myscripts/output"
-inputDir = "/Users/eunwooson/Desktop/estimator/idep-node/server/socket/../testFolder/code/dershare:/usr/local/src/myscripts"
+// outputDir = "/Users/eunwooson/Desktop/estimator/idep-node/server/socket/../testFolder/code/output/dershare:/usr/local/src/myscripts/output"
+// inputDir = "/Users/eunwooson/Desktop/estimator/idep-node/server/socket/../testFolder/code/dershare:/usr/local/src/myscripts"
+
+outputDir = "/home/pbshop1001/dershare-report/server/testFolder/code/output/dershare"+":/usr/local/src/myscripts/output"
+inputDir = "/home/pbshop1001/dershare-report/server/testFolder/code/dershare"+":/usr/local/src/myscripts/output"
+
 
 var docker = new Docker({
   socketPath: socket
@@ -250,8 +254,10 @@ export function runTS(io) {
       var outputDir2 = root+ '/../testFolder/' + outputTarget + ':/usr/src/app/output'
       var inputDir2 = root+ '/../testFolder/' + 'code/dershare:/usr/src/app'
       var dockerImg = 'py3-est'
-      outputDir2 = "/Users/eunwooson/Desktop/estimator/idep-node/server/socket/../testFolder/code/output/dershare:/usr/src/app/output"
-      inputDir2 = "/Users/eunwooson/Desktop/estimator/idep-node/server/socket/../testFolder/code/dershare:/usr/src/app"
+      // outputDir2 = "/Users/eunwooson/Desktop/estimator/idep-node/server/socket/../testFolder/code/output/dershare"+":/usr/src/app/output"
+      // inputDir2 = "/Users/eunwooson/Desktop/estimator/idep-node/server/socket/../testFolder/code/dershare"+":/usr/src/app"
+      outputDir2 = "/home/pbshop1001/dershare-report/server/testFolder/code/output/dershare"+":/usr/src/app/output"
+      inputDir2 = "/home/pbshop1001/dershare-report/server/testFolder/code/dershare"+":/usr/src/app"
 
       const Setting = {
         Tty: true,

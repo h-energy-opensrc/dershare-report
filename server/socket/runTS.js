@@ -93,7 +93,10 @@ export function runTS(io) {
         });
         next()
       };
-      
+      socket.emit('docker_result_msg', {
+        msg: "Start summary.R process"
+      });
+
       async.auto({
         pre_process: function (callback) {
             console.log("pre_process")

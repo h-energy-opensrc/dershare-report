@@ -116,6 +116,7 @@ export function runTS(io) {
 
         email_link: ['pre_process', function (results, callback) {
           var fNames = ["maxByDays.png", "minByDays.png", "sumByDays.png"]
+
           fNames.forEach(fName =>{
             fs.readFile(__dirname + '/../testFolder/code/output/dershare/' 
               + fName , function (err, buf) {
@@ -263,11 +264,7 @@ export function runTS(io) {
     })
 
     socket.on('biz-analysis-dershare', function (input) {
-      
       var dockerImg = 'py3-est'
-      
-      
-
       const Setting = {
         Tty: true,
         'Volumes': {
@@ -301,8 +298,8 @@ export function runTS(io) {
             .then(function (container) {
               setTimeout(function(){
                   console.log("1", 'is Done')
-                  callback(null, 'data', 'converted to array');
-              }, 300);
+                  callback(null, 'data', 'converted to array')
+              }, 300)
             })
         },
 

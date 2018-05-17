@@ -45,11 +45,8 @@ export function start(io) {
             socket.emit('docker_result_msg', {msg: chunk.toString('utf8'), cnn:true});
           });
         })
-    });
-
-    
+    });    
   });
-
 }
 
 // Resize tty

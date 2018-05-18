@@ -183,9 +183,9 @@ export function runTS(io) {
         var result = decoder.write(doc)
         socket.emit('docker_result_msg', {
           msg: result
-        });
+        })
         next()
-      };
+      }
       
       async.auto({
         pre_process: function (callback) {
@@ -196,7 +196,7 @@ export function runTS(io) {
             .then(function (container) {
               setTimeout(function(){
                   console.log("1", 'is Done')
-                  callback(null, 'data', 'converted to array');
+                  callback(null, 'data', 'converted to array')
               }, 300);
             })
         },
@@ -205,34 +205,61 @@ export function runTS(io) {
           var targetResult = __dirname + '/../testFolder/code/dershare/' + 'FeasibilityStudyResult.json'
           fs.unlinkSync(targetResult);
           
-          var fNames = [
-            "graphs_1.png", "graphs_2.png", "graphs_3.png",
-            "graphs_4.png", "graphs_5.png", "graphs_6.png",
-            "graphs_7.png", "graphs_8.png", "graphs_9.png",
-            "graphs_10.png"
-          ]
-
-          fNames.forEach(fName =>{
-            fs.readFile(__dirname + '/../testFolder/code/output/dershare/' 
-              + fName , function (err, buf) {
-              console.log(err)
-              socket.emit('imageBiz', {
-                image: true,
-                // id: input.id,
-                type: "scatter",
-                buffer: buf.toString('base64')
-              });
+          const csv=require('csvtojson')
+          console.log(csv)
+          csv()
+            .fromFile(__dirname + '/../testFolder/code/output/dershare/bizSum.csv')
+            .on('json',(jsonObj)=>{
+            console.log(jsonObj)
+            socket.emit('top10CSV', {
+              image: true,
+              buffer: jsonObj
             });
           })
 
-
+          // var fNames = [
+          //   __dirname + '/../testFolder/code/output/dershare/'+ "graphs_1.png", 
+          //   __dirname + '/../testFolder/code/output/dershare/'+ "graphs_2.png", 
+          //   __dirname + '/../testFolder/code/output/dershare/'+ "graphs_3.png",
+          //   __dirname + '/../testFolder/code/output/dershare/'+ "graphs_4.png", 
+          //   __dirname + '/../testFolder/code/output/dershare/' + "graphs_5.png", 
+          //   __dirname + '/../testFolder/code/output/dershare/'+"graphs_6.png",
+          //   __dirname + '/../testFolder/code/output/dershare/'+"graphs_7.png", 
+          //   __dirname + '/../testFolder/code/output/dershare/'+"graphs_8.png", 
+          //   __dirname + '/../testFolder/code/output/dershare/'+"graphs_9.png",
+          //   __dirname + '/../testFolder/code/output/dershare/'+"graphs_10.png"
+          // ]
+          var fNames = [
+            {name: "graphs_1.png", id: 1},
+            {name: "graphs_2.png", id: 2}, 
+            {name: "graphs_3.png", id: 3},
+            {name: "graphs_4.png", id: 4}, 
+            {name: "graphs_5.png", id: 5}, 
+            {name: "graphs_6.png", id: 6},
+            {name: "graphs_7.png", id: 7}, 
+            {name: "graphs_8.png", id: 8}, 
+            {name: "graphs_9.png", id: 9},
+            {name: "graphs_10.png", id: 10}
+          ]
+          
+          fNames.forEach((fName, idx) =>{
+            fs.readFile(__dirname + '/../testFolder/code/output/dershare/' 
+              + fName.name , function (err, buf) {
+              console.log(err)
+              socket.emit('imageBiz', {
+                image: true,
+                id: fName.id,
+                type: "scatter",
+                buffer: buf.toString('base64')
+              })
+            });
+          })
           callback(null, 'filename');
         }]
       }, function (err, results) {
         console.log('err = ', err);
         console.log('results = ', results);
       });
-      
     })
 
     socket.on('biz-analysis-dershare', function (input) {

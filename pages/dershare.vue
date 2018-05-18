@@ -89,7 +89,7 @@
             </div>
             <div class="code pa1  fl w-30 bg-light-gray">
               <div class="mv2 measure ">
-                <label for="name" class="f6 b db mb2"> 단가 (원/kW) </label>
+                <label for="name" class="f6 b db mb2"> PCS 단가 (원/kW) </label>
                 <input v-model="input_feasible.simulation.construction.pcs" id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="name-desc">
                 
               </div>
@@ -100,7 +100,7 @@
               </div>
 
               <div class="mv2 measure ">
-                <label for="name" class="f6 b db mb2"> EMS 닽가 (원/kWh)</label>
+                <label for="name" class="f6 b db mb2"> EMS 단가 (원/kWh)</label>
                 <input v-model="input_feasible.simulation.construction.ems" id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="name-desc">
                 
               </div>
@@ -118,7 +118,7 @@
             </div>
             <div class="code pa1  fl w-30 bg-near-white">
               <div class="mv2 measure ">
-                <label for="name" class="f6 b db mb2"> 집중회사기간 내 수용가 지급율(%) </label>
+                <label for="name" class="f6 b db mb2"> 집중회수기간 내 수용가 지급율(%) </label>
                 <input v-model="input_feasible.simulation.ess_share.intense_rate" id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="name-desc">
                 
               </div>
@@ -226,6 +226,7 @@
                   <table class="collapse ba br2 b--black-10 pv2 ph3">
                     <thead>
                       <tr class="striped--light-gray ">
+                        <th class="pv2 ph3 tl f6 fw6 ttu">ID</th>
                         <th class="pv2 ph3 tl f6 fw6 ttu">battery</th>
                         <th class="pv2 ph3 tl f6 fw6 ttu">Construction_Cost</th>
                         <th class="pv2 ph3 tl f6 fw6 ttu">equity_irr</th>
@@ -236,17 +237,19 @@
                     </thead>
                     <tbody>
                       <tr class="striped--light-gray ">
-                        <td class="pv2 ph3">{{feasibleResult[idx].battery}}</td>
-                        <td class="pv2 ph3">{{feasibleResult[idx].construction_cost}}</td>
-                        <td class="pv2 ph3">{{feasibleResult[idx].equity_irr}}</td>
-                        <td class="pv2 ph3">{{feasibleResult[idx].pcs}}</td>
-                        <td class="pv2 ph3">{{feasibleResult[idx].peak_cut}}</td>
-                        <td class="pv2 ph3">{{feasibleResult[idx].project_irr}}</td>
+                        <td class="pv2 ph3">{{bizSum[idx].idx}}</td>
+                        <td class="pv2 ph3">{{bizSum[idx].battery}}</td>
+                        <td class="pv2 ph3">{{bizSum[idx].construction_cost}}</td>
+                        <td class="pv2 ph3">{{bizSum[idx].equ_irr}}</td>
+                        <td class="pv2 ph3">{{bizSum[idx].pcs}}</td>
+                        <td class="pv2 ph3">{{bizSum[idx].peak_cut}}</td>
+                        <td class="pv2 ph3">{{bizSum[idx].project_irr}}</td>
                       </tr>
                     </tbody>
+
                   </table>  
                 </div>
-                <img style="" class="center mw-80" alt="night sky over water" :src='i' />
+                <img style="" class="center mw-80" alt="night sky over water" :src='i.img' />
               </div>
             </div>
             
@@ -272,7 +275,7 @@
 <script>
 import HeaderMenu from "~/components/Header.vue";
 import Report from "~/components/Report.vue";
-
+import _ from 'lodash';
 import axios from "~/plugins/axios";
 import io from "socket.io-client";
 import firebase from "firebase";
@@ -366,6 +369,7 @@ export default {
       orgs: [],
       isAailableLog: true,
       imagePre: [],
+      bizSum: [],
       imageBiz: [],
       imageFinal: [],
       imageHeat: [],
@@ -385,7 +389,10 @@ export default {
     vm.socket.on("connect", function(data) {
       vm.socket.emit("join", "Hello World from client");
     });
-
+    vm.socket.on("top10CSV", function(image, buffer) {
+      console.log(image.buffer)
+      vm.bizSum.push(image.buffer)
+    });
     vm.socket.on("feasible", function(data) {
       console.log(data)
       vm.feasibleResult = data.buffer
@@ -415,7 +422,8 @@ export default {
     });
     vm.socket.on("imageBiz", function(image, buffer) {
       if (image) {
-        vm.imageBiz.push("data:image/png;base64," + image.buffer);
+        vm.imageBiz.push({img: "data:image/png;base64," + image.buffer, id: image.id });
+        vm.imageBiz = _.sortBy(vm.imageBiz, ['id']);
       }
     });
     vm.socket.on("imageHeat", function(image, buffer) {

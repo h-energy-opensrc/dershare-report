@@ -76,7 +76,7 @@ export function runTS(io) {
         'HostConfig': {
           'Binds': [
             // '/Users/eunwooson/Downloads/idep-node/server/testFolder/' + outputDir + ':/usr/local/src/myscripts/output',
-            outputDir,
+            // outputDir,
             inputDir
             // root+ '/../testFolder/' + outputDir + ':/usr/local/src/myscripts/output',
             // root+ '/../testFolder/' + 'code/dershare:/usr/local/src/myscripts',
@@ -119,9 +119,9 @@ export function runTS(io) {
 
         email_link: ['pre_process', function (results, callback) {
           var fNames = ["maxByDays.png", "minByDays.png", "sumByDays.png"]
-
+          //code/dershare/output
           fNames.forEach(fName =>{
-            fs.readFile(__dirname + '/../testFolder/code/output/dershare/' 
+            fs.readFile(__dirname + '/../testFolder/code/dershare/output/' 
               + fName , function (err, buf) {
               console.log(err)
               socket.emit('imagePre', {
@@ -135,7 +135,7 @@ export function runTS(io) {
 
           var tsNames = ["year_2015.png", "year_2016.png", "year_2017.png", "year_2018.png"]
           tsNames.forEach(fName => {
-            fs.readFile(__dirname + '/../testFolder/code/output/dershare/' 
+            fs.readFile(__dirname + '/../testFolder/code/dershare/output/' 
               + fName , function (err, buf) {
               console.log(err)
               socket.emit('imageHeat', {

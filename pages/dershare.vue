@@ -334,7 +334,7 @@ export default {
         {id: "0710051690", contract_demand: 300},
         {id: "0710051627", contract_demand: 17600},
         {id: "0712465810", contract_demand: 1500},
-        {id: "1710058040", contract_demand: 10000},
+        // {id: "1710058040", contract_demand: 10000},
         {id: "1712467167", contract_demand: 6000},
         // {id: "1324145063", contract_demand: 750},
         {id: "1324097686", contract_demand: 750},

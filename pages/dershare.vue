@@ -379,8 +379,8 @@ export default {
       containers: [],
       msg_docker_result: "",
       //host: 'http://bioinformatics.sdstate.edu:8000',
-      host: "35.200.80.26:3001"
-      // host: "0.0.0.0:3001"
+      // host: "35.200.80.26:3001"
+      host: "0.0.0.0:3001"
     };
   },
   mounted() {
@@ -419,18 +419,18 @@ export default {
       if (image) {
         vm.imagePre.push("data:image/png;base64," + image.buffer);
       }
-    });
+    })
     vm.socket.on("imageBiz", function(image, buffer) {
       if (image) {
         vm.imageBiz.push({img: "data:image/png;base64," + image.buffer, id: image.id });
         vm.imageBiz = _.sortBy(vm.imageBiz, ['id']);
       }
-    });
+    })
     vm.socket.on("imageHeat", function(image, buffer) {
       if (image) {
         vm.imageHeat.push("data:image/png;base64," + image.buffer);
       }
-    });
+    })
     vm.socket.on("imagePca", function(image, buffer) {
       if (image) {
         vm.imagePca.push("data:image/png;base64," + image.buffer);

@@ -76,7 +76,7 @@ export function runTS(io) {
         'HostConfig': {
           'Binds': [
             // '/Users/eunwooson/Downloads/idep-node/server/testFolder/' + outputDir + ':/usr/local/src/myscripts/output',
-            // outputDir,
+            outputDir,
             inputDir
             // root+ '/../testFolder/' + outputDir + ':/usr/local/src/myscripts/output',
             // root+ '/../testFolder/' + 'code/dershare:/usr/local/src/myscripts',

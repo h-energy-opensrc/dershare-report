@@ -379,8 +379,8 @@ export default {
       containers: [],
       msg_docker_result: "",
       //host: 'http://bioinformatics.sdstate.edu:8000',
-      // host: "35.200.80.26:3001"
-      host: "0.0.0.0:3001"
+      host: "35.200.80.26:3001"
+      // host: "0.0.0.0:3001"
     };
   },
   mounted() {

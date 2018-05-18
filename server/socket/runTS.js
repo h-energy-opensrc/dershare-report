@@ -189,9 +189,9 @@ export function runTS(io) {
       
       async.auto({
         pre_process: function (callback) {
-            console.log("pre_process")
+          console.log("biz-summary")
           docker.run('kruny1001/plumber', ['Rscript', '--vanilla', 'biz-summary.R'
-            , input.toString()
+            , 'FeasibilityStudyResult.json'
           ], myStream, Setting)
             .then(function (container) {
               setTimeout(function(){
@@ -202,12 +202,21 @@ export function runTS(io) {
         },
 
         email_link: ['pre_process', function (results, callback) {
-          var fNames = ["maxByDays.png", "minByDays.png", "sumByDays.png"]
+          var targetResult = __dirname + '/../testFolder/code/dershare/' + 'FeasibilityStudyResult.json'
+          fs.unlinkSync(targetResult);
+          
+          var fNames = [
+            "graphs_1.png", "graphs_2.png", "graphs_3.png",
+            "graphs_4.png", "graphs_5.png", "graphs_6.png",
+            "graphs_7.png", "graphs_8.png", "graphs_9.png",
+            "graphs_10.png"
+          ]
+
           fNames.forEach(fName =>{
             fs.readFile(__dirname + '/../testFolder/code/output/dershare/' 
               + fName , function (err, buf) {
               console.log(err)
-              socket.emit('imagePre', {
+              socket.emit('imageBiz', {
                 image: true,
                 // id: input.id,
                 type: "scatter",
@@ -216,33 +225,8 @@ export function runTS(io) {
             });
           })
 
-          var tsNames = ["year_2015.png", "year_2016.png", "year_2017.png", "year_2018.png"]
-          tsNames.forEach(fName =>{
-            fs.readFile(__dirname + '/../testFolder/code/output/dershare/' 
-              + fName , function (err, buf) {
-              console.log(err)
-              socket.emit('imageHeat', {
-                image: true,
-                // id: input.id,
-                type: "scatter",
-                buffer: buf.toString('base64')
-              })
-            })
-          })
-        //   const csv=require('csvtojson')
-        //   csv()
-        //   .fromFile(__dirname + '/../testFolder/code/output/dershare/fitmos.csv')
-        //   .on('json',(jsonObj)=>{
-        //     // combine csv header row and csv line to a json objects
-        //     // jsonObj.a ==> 1 or 4
-        //     console.log(jsonObj)
-        //     socket.emit('prdCSV', {
-        //       image: true,
-        //       buffer: jsonObj
-        //     });
-        //   })
+
           callback(null, 'filename');
-          // callback(null, {'file':results.write_file, 'email':'user@example.com'});
         }]
       }, function (err, results) {
         console.log('err = ', err);
@@ -307,7 +291,7 @@ export function runTS(io) {
                 image: true,
                 buffer: obj
               });
-              fs.unlinkSync(targetResult);
+              // fs.unlinkSync(targetResult);
           })
 
           callback(null, 'filename');

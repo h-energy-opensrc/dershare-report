@@ -146,7 +146,7 @@
             <!-- {{input_feasible}} -->
           </section>
 
-          <section class="code ma2 pa4 w-100" v-if="feasibleResult !== {}">
+          <!-- <section class="code ma2 pa4 w-100" v-if="feasibleResult !== {}">
             <h3 class="f4"> 사업성 평가결과 요약</h3>
               <div v-for="(result, idx) in feasibleResult.buffer" :key="idx">
                 <div>{{result.id}}</div>
@@ -197,10 +197,8 @@
 
                   </div>
                 </section>
-
-                {{result}}
               </div>
-          </section>
+          </section> -->
       
           <hr/>
           
@@ -212,11 +210,43 @@
               </div>
             </div>
 
-            
             <h3 class="code underline  intro--headline karla fw6 measure-narrow lh-title pb3"> Yearly </h3>
             <div class="left--expand w-100 center">
               <div class="ma1" v-for="i in imageHeat" >
                 <img style="max-width: 400px" class="center mw-80" alt="night sky over water" :src='i'>
+              </div>
+            </div>
+
+            <h3 class="code underline intro--headline 
+              karla fw6 measure-narrow lh-title pb3"> 사업성 평가 </h3>
+            <div class="w-100 center">
+              <div class="ma1" v-for="(i, idx) in imageBiz" :key="idx" >
+                
+                <div>
+                  <table class="collapse ba br2 b--black-10 pv2 ph3">
+                    <thead>
+                      <tr class="striped--light-gray ">
+                        <th class="pv2 ph3 tl f6 fw6 ttu">battery</th>
+                        <th class="pv2 ph3 tl f6 fw6 ttu">Construction_Cost</th>
+                        <th class="pv2 ph3 tl f6 fw6 ttu">equity_irr</th>
+                        <th class="pv2 ph3 tl f6 fw6 ttu">pcs</th>
+                        <th class="pv2 ph3 tl f6 fw6 ttu">peak_cut</th>
+                        <th class="pv2 ph3 tl f6 fw6 ttu">project_irr</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="striped--light-gray ">
+                        <td class="pv2 ph3">{{feasibleResult[idx].battery}}</td>
+                        <td class="pv2 ph3">{{feasibleResult[idx].construction_cost}}</td>
+                        <td class="pv2 ph3">{{feasibleResult[idx].equity_irr}}</td>
+                        <td class="pv2 ph3">{{feasibleResult[idx].pcs}}</td>
+                        <td class="pv2 ph3">{{feasibleResult[idx].peak_cut}}</td>
+                        <td class="pv2 ph3">{{feasibleResult[idx].project_irr}}</td>
+                      </tr>
+                    </tbody>
+                  </table>  
+                </div>
+                <img style="" class="center mw-80" alt="night sky over water" :src='i' />
               </div>
             </div>
             
@@ -336,6 +366,7 @@ export default {
       orgs: [],
       isAailableLog: true,
       imagePre: [],
+      imageBiz: [],
       imageFinal: [],
       imageHeat: [],
       imagePca: [],
@@ -344,7 +375,8 @@ export default {
       containers: [],
       msg_docker_result: "",
       //host: 'http://bioinformatics.sdstate.edu:8000',
-      host: "35.200.80.26:3001"
+      // host: "35.200.80.26:3001"
+      host: "0.0.0.0:3001"
     };
   },
   mounted() {
@@ -356,11 +388,11 @@ export default {
 
     vm.socket.on("feasible", function(data) {
       console.log(data)
-      vm.feasibleResult = data
+      vm.feasibleResult = data.buffer
       // data.HeaderMenu
       var tempResult =data.buffer
-      console.log(tempResult[0].cumul_cash_flow)
-      // vm.socket.emit("biz-summary", tempResult[0].cumul_cash_flow)
+      // console.log(JSON.stringify(tempResult))
+      vm.socket.emit("biz-summary", JSON.stringify(tempResult))
     });
     
     vm.socket.on("messages", function(data) {
@@ -381,9 +413,9 @@ export default {
         vm.imagePre.push("data:image/png;base64," + image.buffer);
       }
     });
-    vm.socket.on("imageFinal", function(image, buffer) {
+    vm.socket.on("imageBiz", function(image, buffer) {
       if (image) {
-        vm.imageFinal.push("data:image/png;base64," + image.buffer);
+        vm.imageBiz.push("data:image/png;base64," + image.buffer);
       }
     });
     vm.socket.on("imageHeat", function(image, buffer) {
@@ -405,7 +437,6 @@ export default {
       // vm.socket.emit("dataExplore-dershare", "Hello World from client")
       vm.socket.emit("ts-summary", "Hello World from client")
       vm.socket.emit("join-test-TS", "Hello World from client")
-      
     },
     buildModel() {
       var vm = this;

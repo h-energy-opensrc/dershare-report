@@ -54,6 +54,7 @@ DataExploratary <- R6Class("DataExploratary",
         col=unique(self$cols),
         lty = 1, pch = 1,merge = TRUE)
     },
+    
     getPlotByRange = function(acc=1216119713, range="2016") {
       temp = self$data
       temp$time = strptime(temp$time, format="%Y-%m-%d  %H:%M")

@@ -12,7 +12,7 @@ DataClean <- R6Class("DataClean",
     cols = NULL,
     acc = NULL,
     initialize = function(acc){
-      filePath <- paste0("./data/",acc,".na.csv")
+      filePath <- paste0("./ts/",acc,".na.csv")
       self$acc = acc
       print(acc)
       self$data <-read.csv(filePath)

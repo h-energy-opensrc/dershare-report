@@ -51,8 +51,8 @@ for(idx in 1:nrow(top.10.irr)){
   # net
   par(mfrow=c(3,2))
   plot(y=result$net_cash_flow[[idx]]$equity, x=result$net_cash_flow[[idx]]$year, type="l", 
-       ylim=c(minEqu, maxEqu), 
-       main=paste0("Net Cach Flow Equity IRR: ",top.10.irr$equ.irr[[idx]]), ylab="KRW", xlab="Year")
+       ylim=c(minEqu, maxEqu),
+       main=paste0("Net Cach Flow"), ylab="KRW", xlab="Year")
   # cumu
   plot(y=result$cumul_cash_flow[[idx]]$equity, x=result$net_cash_flow[[idx]]$year, 
        type="l", ylim=c(minEqu.cum, maxEqu.cum), 

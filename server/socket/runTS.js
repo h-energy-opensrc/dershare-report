@@ -107,7 +107,7 @@ export function runTS(io) {
         pre_process: function (callback) {
             console.log("pre_process")
           docker.run('kruny1001/plumber', ['Rscript', '--vanilla', 'summary.R'
-            , outputDir, inputDir
+            , input.toString()
           ], myStream, Setting)
             .then(function (container) {
               setTimeout(function(){
@@ -164,7 +164,7 @@ export function runTS(io) {
         'HostConfig': {
           'Binds': [
             // '/Users/eunwooson/Downloads/idep-node/server/testFolder/' + outputDir + ':/usr/local/src/myscripts/output',
-            outputDir,
+            // outputDir,
             inputDir
             // root+ '/../testFolder/' + outputDir + ':/usr/local/src/myscripts/output',
             // root+ '/../testFolder/' + 'code/dershare:/usr/local/src/myscripts',
@@ -208,7 +208,7 @@ export function runTS(io) {
           const csv=require('csvtojson')
           console.log(csv)
           csv()
-            .fromFile(__dirname + '/../testFolder/code/output/dershare/bizSum.csv')
+            .fromFile(__dirname + '/../testFolder/code/dershare/output/bizSum.csv')
             .on('json',(jsonObj)=>{
             console.log(jsonObj)
             socket.emit('top10CSV', {
@@ -243,17 +243,29 @@ export function runTS(io) {
           ]
           
           fNames.forEach((fName, idx) =>{
-            fs.readFile(__dirname + '/../testFolder/code/output/dershare/' 
+            try{
+              fs.readFile(__dirname + '/../testFolder/code/dershare/output/' 
               + fName.name , function (err, buf) {
-              console.log(err)
-              socket.emit('imageBiz', {
-                image: true,
-                id: fName.id,
-                type: "scatter",
-                buffer: buf.toString('base64')
-              })
+              
+              if(err)
+                console.log(err)
+              else{
+                socket.emit('imageBiz', {
+                  image: true,
+                  id: fName.id,
+                  type: "scatter",
+                  buffer: buf.toString('base64')
+                })
+                fs.unlinkSync(__dirname + '/../testFolder/code/dershare/output/' + fName.name );
+              }
             });
+            } catch (err) {
+              // Here you get the error when the file was not found,
+              // but you also get any other error
+            }
+            
           })
+          
           callback(null, 'filename');
         }]
       }, function (err, results) {

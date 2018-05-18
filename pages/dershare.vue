@@ -16,8 +16,7 @@
                 <div>
                   <ul>
                     <li>
-                        <!-- <button class="w-100 f5 link dim br1 ba bw2 ph3 pv2 mb2 dib" @click="loadData(1)"> Data Exploratory Analysis </button> -->
-                        <button class="w-100 f5 link dim br1 ba bw2 ph3 pv2 mb2 dib" @click="dataExplore()"> Data Exploratory Analysis </button>
+                        <!-- <button class="w-100 f5 link dim br1 ba bw2 ph3 pv2 mb2 dib" @click="dataExplore()"> Data Exploratory Analysis </button> -->
                     </li>
                     <li>
                         <button class="w-100 f5 link dim br1 ba bw2 ph3 pv2 mb2 dib" @click="bizAnalysisDershare()">Business Analysis</button>
@@ -62,10 +61,18 @@
           <section class="ma2 pa4 w-100">
             <h3 class="code f4"> 사업평가서 측정값 </h3>
             <div class="code pa1 fl w-30 bg-near-white">
+
+              <div class="mv2  measure">
+                <label for="name" class="f6 b db mb2"> 어카운트 </label>
+              <select v-model="selected" @change="changeAcc(selected)">
+                <option v-for="(option, idx) in accounts" :key="idx" v-bind:value="option">
+                  Acc: {{ option.id }}: {{option.contract_demand}} kW
+                </option>
+              </select>
+              </div>
               <div class="mv2 measure ">
                 <label for="name" class="f6 b db mb2"> 어카운트 </label>
-                <input v-model="input_feasible.measure_csv" id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="name-desc">
-                
+                <input v-model="input_feasible.measure_csv" id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="name-desc"> 
               </div>
               <div class="mv2  measure">
                 <label for="name" class="f6 b db mb2"> 운영 시작월 </label>
@@ -203,7 +210,7 @@
           <hr/>
           
           <section class="w-100">
-            <h3 class="code underline intro--headline karla fw6 measure-narrow lh-title pb3"> Max, Min, Sum by Week of Days </h3>
+            <!-- <h3 class="code underline intro--headline karla fw6 measure-narrow lh-title pb3"> Max, Min, Sum by Week of Days </h3>
             <div class="left--expand w-100 center">
               <div class="ma1" v-for="i in imagePre" >
                 <img style="max-width: 400px" class="center mw-80" alt="night sky over water" :src='i' />
@@ -215,22 +222,23 @@
               <div class="ma1" v-for="i in imageHeat" >
                 <img style="max-width: 400px" class="center mw-80" alt="night sky over water" :src='i'>
               </div>
-            </div>
+            </div> -->
 
             <h3 class="code underline intro--headline 
               karla fw6 measure-narrow lh-title pb3"> 사업성 평가 </h3>
             <div class="w-100 center">
+              
               <div class="ma1" v-for="(i, idx) in imageBiz" :key="idx" >
-                
-                <div>
+                <div v-if-="bizSum">
                   <table class="collapse ba br2 b--black-10 pv2 ph3">
                     <thead>
                       <tr class="striped--light-gray ">
                         <th class="pv2 ph3 tl f6 fw6 ttu">ID</th>
                         <th class="pv2 ph3 tl f6 fw6 ttu">battery</th>
+                        <th class="pv2 ph3 tl f6 fw6 ttu">pcs</th>
                         <th class="pv2 ph3 tl f6 fw6 ttu">Construction_Cost</th>
                         <th class="pv2 ph3 tl f6 fw6 ttu">equity_irr</th>
-                        <th class="pv2 ph3 tl f6 fw6 ttu">pcs</th>
+                        
                         <th class="pv2 ph3 tl f6 fw6 ttu">peak_cut</th>
                         <th class="pv2 ph3 tl f6 fw6 ttu">project_irr</th>
                       </tr>
@@ -239,9 +247,9 @@
                       <tr class="striped--light-gray ">
                         <td class="pv2 ph3">{{bizSum[idx].idx}}</td>
                         <td class="pv2 ph3">{{bizSum[idx].battery}}</td>
+                        <td class="pv2 ph3">{{bizSum[idx].pcs}}</td>
                         <td class="pv2 ph3">{{bizSum[idx].construction_cost}}</td>
                         <td class="pv2 ph3">{{bizSum[idx].equ_irr}}</td>
-                        <td class="pv2 ph3">{{bizSum[idx].pcs}}</td>
                         <td class="pv2 ph3">{{bizSum[idx].peak_cut}}</td>
                         <td class="pv2 ph3">{{bizSum[idx].project_irr}}</td>
                       </tr>
@@ -249,7 +257,7 @@
 
                   </table>  
                 </div>
-                <img style="" class="center mw-80" alt="night sky over water" :src='i.img' />
+                <img style="max-width: 600px;" class="center mw-80" alt="night sky over water" :src='i.img' />
               </div>
             </div>
             
@@ -309,10 +317,35 @@ export default {
   },
   data() {
     return {
+      accounts: [
+        {id: "1324150430", contract_demand: 800},
+        {id: "0339061375", contract_demand: 950},
+        {id: "0337995003", contract_demand: 950},
+        {id: "0335650156", contract_demand: 5000},
+        {id: "1323735506", contract_demand: 950},
+        {id: "0338270748", contract_demand: 800},
+        {id: "1710008835", contract_demand: 850},
+        {id: "1713401431", contract_demand: 2000},
+        // {id: "1715009174", contract_demand: 25},
+        {id: "0710051681", contract_demand: 1000},
+        {id: "0339348968", contract_demand: 750},
+        {id: "1710008489", contract_demand: 990},
+        {id: "0135169421", contract_demand: 2400},
+        {id: "0710051690", contract_demand: 300},
+        {id: "0710051627", contract_demand: 17600},
+        {id: "0712465810", contract_demand: 1500},
+        {id: "1710058040", contract_demand: 10000},
+        {id: "1712467167", contract_demand: 6000},
+        // {id: "1324145063", contract_demand: 750},
+        {id: "1324097686", contract_demand: 750},
+        {id: "0712301471", contract_demand: 750},
+        {id: "1316121995", contract_demand: 5720},
+        {id: "1511038083", contract_demand: 9950}
+      ],
       acc: "",
       feasibleResult : {},
-      input_feasible: {"measure_csv":"./ts/1316121995.na.csv","start_month": "2018-06",
-          "contract_demand": 5720,
+      input_feasible: {"measure_csv":"./ts/1324150430.na.csv","start_month": "2018-06",
+          "contract_demand": 800,
           "charge": {
               "demand": 8320,
               "energy": {
@@ -366,6 +399,7 @@ export default {
               }
           }
       },
+      selected: "1324150430",
       orgs: [],
       isAailableLog: true,
       imagePre: [],
@@ -379,8 +413,8 @@ export default {
       containers: [],
       msg_docker_result: "",
       //host: 'http://bioinformatics.sdstate.edu:8000',
-      host: "35.200.80.26:3001"
-      // host: "0.0.0.0:3001"
+      // host: "35.200.80.26:3001"
+      host: "0.0.0.0:3001"
     };
   },
   mounted() {
@@ -439,12 +473,15 @@ export default {
     vm.listContainers();
   },
   methods: {
+    changeAcc(){
+      var vm = this
+      vm.input_feasible.measure_csv = `./ts/${vm.selected.id}.na.csv`
+      vm.input_feasible.contract_demand = vm.selected.contract_demand
+    },
     dataExplore() {
       var vm = this;
-      var vm = this;
-      // vm.socket.emit("dataExplore-dershare", "Hello World from client")
-      vm.socket.emit("ts-summary", "Hello World from client")
-      vm.socket.emit("join-test-TS", "Hello World from client")
+      vm.removeImgs()
+      vm.socket.emit("ts-summary", vm.selected)
     },
     buildModel() {
       var vm = this;
@@ -453,7 +490,7 @@ export default {
     removeImgs() {
       var vm = this;
       vm.imagePre = [];
-      vm.imageFinal = [];
+      vm.imageBiz = [];
       vm.imageHeat = [];
       vm.imagePca = [];
     },
@@ -477,6 +514,7 @@ export default {
     },
     bizAnalysisDershare(){
       var vm = this;
+      vm.removeImgs()
       // var input = '{"measure_csv":"./ts/1316121995.na.csv","start_month": "2018-06","contract_demand": 5720,"charge": {"demand": 8320,"energy": {"summer": {"light": 56.1,"normal": 109.0,"heavy": 191.1},"spring_fall": {"light": 56.1,"normal": 78.6,"heavy": 109.3},"winter": {"light": 63.1,"normal": 109.2,"heavy": 166.7}}},"simulation": {"pcs": {"min": 0.05,"max": 0.1,"inc": 0.05},"battery": {"min": 0.11,"max": 0.13,"inc": 0.01},"life_cycle": 14,"construction": {"battery": 300000,"pcs": 140000,"install": 133000,"ems": 30000,"manage": 0.03},"ess_share": {"intense_period": 5,"intense_rate": 0.15,"normal_rate": 0.55},"finance": {"borrow_rate": 0.0,"grace_period": 1,"principal_payment_period": 6,"interest_rate": 0.04},"operation": {"sga_rate": 0.01,"depreciation_period": 7,"corp_tex_rate": 0.22}}}'
       var input = JSON.stringify(vm.input_feasible)
       vm.socket.emit("biz-analysis-dershare", input);

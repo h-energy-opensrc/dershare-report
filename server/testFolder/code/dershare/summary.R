@@ -7,10 +7,8 @@ args = commandArgs(trailingOnly=TRUE)
 jsonStr1 = args[1]
 cat(jsonStr1)
 cat("\n")
-jsonStr2 = args[2]
-cat(jsonStr2)
 
-cleanObj <- DataClean$new("1216119713")
+cleanObj <- DataClean$new(jsonStr1)
 exp <- DataExploratary$new(cleanObj$data)
 
 cat("== Min, Max, Sum Plot ==")

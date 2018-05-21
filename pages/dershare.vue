@@ -70,79 +70,80 @@
                 </option>
               </select>
               </div>
-              <div class="mv2 measure ">
+              <!-- <div class="mv2 measure ">
                 <label for="name" class="f6 b db mb2"> 어카운트 </label>
-                <input v-model="input_feasible.measure_csv" id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="name-desc"> 
-              </div>
+                <input v-model="input_feasible.measure_csv" id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100"  aria-describedby="name-desc"> 
+              </div> -->
               <div class="mv2  measure">
                 <label for="name" class="f6 b db mb2"> 운영 시작월 </label>
-                <input v-model="input_feasible.start_month" id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="name-desc">
+                <input type="text" v-model.number="input_feasible.start_month" id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100" aria-describedby="name-desc">
               </div>
               <div class="mv2  measure">
                 <label for="name" class="f6 b db mb2"> 계약전력(kW) </label>
-                <input v-model="input_feasible.contract_demand" id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="name-desc">
+                <input type="number" v-model.number="input_feasible.contract_demand" id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100" aria-describedby="name-desc">
                 
               </div>
               <div class="mv2  measure">
                 <label for="name" class="f6 b db mb2"> 운영 기간(년) </label>
-                <input v-model="input_feasible.simulation.life_cycle" id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="name-desc">
+                <input type="number" v-model.number="input_feasible.simulation.life_cycle" id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100"  aria-describedby="name-desc">
                 
               </div>
               <div class="mv2 measure ">
                 <label for="name" class="f6 b db mb2"> 배터리 단가(원/kWh) </label>
-                <input v-model="input_feasible.simulation.construction.battery" id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="name-desc">
+                <input type="number" v-model.number="input_feasible.simulation.construction.battery" id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100"  aria-describedby="name-desc">
                 
               </div>
             </div>
             <div class="code pa1  fl w-30 bg-light-gray">
               <div class="mv2 measure ">
                 <label for="name" class="f6 b db mb2"> PCS 단가 (원/kW) </label>
-                <input v-model="input_feasible.simulation.construction.pcs" id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="name-desc">
+                <input type="number" v-model.number="input_feasible.simulation.construction.pcs" id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100"  aria-describedby="name-desc">
                 
               </div>
               <div class="mv2 measure ">
                 <label for="name" class="f6 b db mb2"> 시공 단가 (원/kWh) </label>
-                <input v-model="input_feasible.simulation.construction.install" id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="name-desc">
+                <input type="number" v-model.number="input_feasible.simulation.construction.install" id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100"  aria-describedby="name-desc">
                 
               </div>
 
               <div class="mv2 measure ">
                 <label for="name" class="f6 b db mb2"> EMS 단가 (원/kWh)</label>
-                <input v-model="input_feasible.simulation.construction.ems" id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="name-desc">
+                <input type="number" v-model.number="input_feasible.simulation.construction.ems" id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100"  aria-describedby="name-desc">
                 
               </div>
               <div class="mv2 measure ">
                 <label for="name" class="f6 b db mb2"> 관리비(%) </label>
-                <input v-model="input_feasible.simulation.construction.manage" id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="name-desc">
+                <input type="number" v-model.number="input_feasible.simulation.construction.manage" id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100"  aria-describedby="name-desc">
                 
               </div>
 
               <div class="mv2 measure ">
                 <label for="name" class="f6 b db mb2"> 집중회수기간(년) </label>
-                <input v-model="input_feasible.simulation.ess_share.intense_period" id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="name-desc">
+                <input type="number" v-model.number="input_feasible.simulation.ess_share.intense_period" id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100"  aria-describedby="name-desc">
                 
               </div>
             </div>
             <div class="code pa1  fl w-30 bg-near-white">
               <div class="mv2 measure ">
                 <label for="name" class="f6 b db mb2"> 집중회수기간 내 수용가 지급율(%) </label>
-                <input v-model="input_feasible.simulation.ess_share.intense_rate" id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="name-desc">
+                <input type="number" step="any" v-model.number="input_feasible.simulation.ess_share.intense_rate" 
+                    id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100"  
+                    aria-describedby="name-desc">
                 
               </div>
               <div class="mv2 measure ">
                 <label for="name" class="f6 b db mb2"> 수용가 지급율(%) </label>
-                <input v-model="input_feasible.simulation.ess_share.normal_rate" id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="name-desc">
+                <input type="number" v-model.number="input_feasible.simulation.ess_share.normal_rate" id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100"  aria-describedby="name-desc">
                 
               </div>
 
               <div class="mv2 measure ">
                 <label for="name" class="f6 b db mb2"> 관리비율(%) </label>
-                <input v-model="input_feasible.simulation.operation.sga_rate" id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="name-desc">
-                
+                <input type="number" v-model.number="input_feasible.simulation.operation.sga_rate" id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100"  aria-describedby="name-desc">
               </div>
               <div class="mv2 measure ">
                 <label for="name" class="f6 b db mb2"> 법인세율(%) </label>
-                <input v-model="input_feasible.simulation.operation.corp_tex_rate" id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="name-desc">
+                <input type="number" v-model.number="input_feasible.simulation.operation.corp_tex_rate" id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100"  aria-describedby="name-desc">
                 
               </div>
               <div class="mv2 measure ">

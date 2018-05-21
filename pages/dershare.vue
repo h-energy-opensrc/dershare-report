@@ -434,6 +434,7 @@ export default {
       // data.HeaderMenu
       var tempResult =data.buffer
       // console.log(JSON.stringify(tempResult))
+      vm.bizSum = []
       vm.socket.emit("biz-summary", JSON.stringify(tempResult))
     });
     

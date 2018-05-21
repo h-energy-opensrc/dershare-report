@@ -215,7 +215,11 @@ export function runTS(io) {
               image: true,
               buffer: jsonObj
             });
-          })
+            
+            
+            }).on('done', ()=>{
+              // fs.unlinkSync(__dirname + '/../testFolder/code/dershare/output/bizSum.csv');
+            })
 
           // var fNames = [
           //   __dirname + '/../testFolder/code/output/dershare/'+ "graphs_1.png", 

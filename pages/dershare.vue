@@ -80,8 +80,7 @@
               </div>
               <div class="mv2  measure">
                 <label for="name" class="f6 b db mb2"> 계약전력(kW) </label>
-                <input type="number" v-model.number="input_feasible.contract_demand" id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100" aria-describedby="name-desc">
-                
+                <input disabled type="number" v-model.number="input_feasible.contract_demand" id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100" aria-describedby="name-desc">
               </div>
               <div class="mv2  measure">
                 <label for="name" class="f6 b db mb2"> 운영 기간(년) </label>

@@ -19,6 +19,7 @@
     "csvtojson": "1.1.9",
     "d3": "4.13.0",
     "dockerode": "2.5.3",
+    "elasticsearch": "^15.0.0",
     "express": "^4.15.3",
     "firebase": "4.10.0",
     "monaco-editor": "^0.10.1",

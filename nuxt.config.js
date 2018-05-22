@@ -18,7 +18,7 @@ module.exports = {
   plugins:[
     // { src: '~/plugins/swiper.js', ssr: false },
     { src: '~/plugins/fbConn.js', ssr: false },
-    // { src: '~/plugins/monaco.js', ssr: false },
+    { src: '~/plugins/elastic.js', ssr: false },
     // { src: '~/plugins/axios.js', ssr: false }
   ],
   build: {

@@ -19,6 +19,7 @@ module.exports = {
     // { src: '~/plugins/swiper.js', ssr: false },
     { src: '~/plugins/fbConn.js', ssr: false },
     { src: '~/plugins/elastic.js', ssr: false },
+    { src: '~/plugins/firebaseui.js', ssr: false },
     // { src: '~/plugins/axios.js', ssr: false }
   ],
   build: {

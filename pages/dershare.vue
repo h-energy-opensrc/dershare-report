@@ -76,7 +76,7 @@
               </div> -->
               <div class="mv2  measure">
                 <label for="name" class="f6 b db mb2"> 운영 시작월 </label>
-                <input type="text" v-model.number="input_feasible.start_month" id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100" aria-describedby="name-desc">
+                <input type="text" v-model="input_feasible.start_month" id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100" aria-describedby="name-desc">
               </div>
               <div class="mv2  measure">
                 <label for="name" class="f6 b db mb2"> 계약전력(kW) </label>
@@ -317,6 +317,7 @@ export default {
   },
   data() {
     return {
+      socketId: "",
       accounts: [
         {id: "1324150430", contract_demand: 800},
         {id: "0339061375", contract_demand: 950},
@@ -414,8 +415,8 @@ export default {
       containers: [],
       msg_docker_result: "",
       //host: 'http://bioinformatics.sdstate.edu:8000',
-      // host: "35.200.80.26:3001"
-      host: "0.0.0.0:3001"
+      host: "35.200.80.26:3001"
+      // host: "0.0.0.0:3001"
     };
   },
   mounted() {
@@ -423,6 +424,7 @@ export default {
     vm.socket = io.connect(vm.host);
     vm.socket.on("connect", function(data) {
       vm.socket.emit("join", "Hello World from client");
+      vm.socketId = vm.socket.id
     });
     vm.socket.on("top10CSV", function(image, buffer) {
       console.log(image.buffer)

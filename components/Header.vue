@@ -19,6 +19,10 @@
           <a title="Documentation" href="/idepTest" class="f6 fw6 hover-blue link black-70 mr2 mr3-m mr4-l dib">
             Blogs
           </a>
+
+          <a title="Documentation" href="/login" class="f6 fw6 hover-blue link black-70 mr2 mr3-m mr4-l dib">
+            Login
+          </a>
           
           
           <!-- <a title="Documentation" href="/idepTest" class="f6 fw6 hover-blue link black-70 mr2 mr3-m mr4-l dib">

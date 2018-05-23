@@ -16,9 +16,6 @@ import {runiDep} from'./socket/runiDep.js'
 import {runThw} from'./socket/runThw.js'
 import {runTS} from'./socket/runTS.js'
 
-
-//var admin = require("firebase-admin");
-// var serviceAccount = require("./key.json");
 var db;
 
 start(io);

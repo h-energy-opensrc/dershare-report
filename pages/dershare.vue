@@ -415,8 +415,8 @@ export default {
       socket: {},
       containers: [],
       msg_docker_result: "",
-      // host: "35.200.80.26:3001"
-      host: "0.0.0.0:3001"
+      host: "35.200.80.26:3001"
+      // host: "0.0.0.0:3001"
     };
   },
   mounted() {

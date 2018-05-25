@@ -35,9 +35,9 @@
   </section>
 </template>
 <script>
-if (process.browser) {
-  var firebaseui = require("firebaseui");
-}
+// if (process.browser) {
+//   var firebaseui = require("firebaseui");
+// }
 
 import { firebase_, auth } from "~/plugins/fbConn";
 

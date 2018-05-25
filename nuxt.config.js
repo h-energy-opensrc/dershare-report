@@ -23,7 +23,7 @@ module.exports = {
   build: {
     vendor: ['axios', 
     'firebase',
-    'firebaseui'
+    // 'firebaseui'
     //'vue-monaco'
     ],
   },

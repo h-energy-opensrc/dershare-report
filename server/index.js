@@ -16,6 +16,8 @@ import {runiDep} from'./socket/runiDep.js'
 import {runThw} from'./socket/runThw.js'
 import {runTS} from'./socket/runTS.js'
 
+global.XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest
+
 var db;
 
 start(io);

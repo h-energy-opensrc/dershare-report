@@ -342,7 +342,8 @@ export default {
         {id: "0712301471", contract_demand: 750},
         {id: "1316121995", contract_demand: 5720},
         {id: "1511038083", contract_demand: 9950},
-        {id: "1712749586", contract_demand: 5500}
+        {id: "1712749586", contract_demand: 5500},
+        {id: "0636461584", contract_demand: 950},
       ],
       acc: "",
       feasibleResult : {},
@@ -414,9 +415,8 @@ export default {
       socket: {},
       containers: [],
       msg_docker_result: "",
-      //host: 'http://bioinformatics.sdstate.edu:8000',
-      host: "35.200.80.26:3001"
-      // host: "0.0.0.0:3001"
+      // host: "35.200.80.26:3001"
+      host: "0.0.0.0:3001"
     };
   },
   mounted() {
@@ -439,11 +439,9 @@ export default {
       vm.bizSum = []
       vm.socket.emit("biz-summary", JSON.stringify(tempResult))
     });
-    
     vm.socket.on("messages", function(data) {
       vm.msg = data;
     });
-
     vm.socket.on("docker_result_msg", function(data) {
       vm.cnn = data.cnn;
       vm.msg_docker_result +=

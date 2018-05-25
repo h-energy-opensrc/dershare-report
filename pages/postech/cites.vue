@@ -7,28 +7,31 @@
       <tbody>
         <tr class="striped--near-white ">
           <th class="pv2 ph3 tl f6 fw6 ttu">
-            고객이름
+            어카운트: 고객이름
           </th>
           <th class="pv2 ph3 tl f6 fw6 ttu">계약전력</th>
           <th class="tr f6 ttu fw6 pv2 ph3">검침일</th>
           <th class="tr f6 ttu fw6 pv2 ph3">용도</th>
-          <th class="tr f6 ttu fw6 pv2 ph3">refName</th>
-          <th class="tr f6 ttu fw6 pv2 ph3">상태</th>
+          <th class="tr f6 ttu fw6 pv2 ph3">Data</th>
+          <th class="tr f6 ttu fw6 pv2 ph3">Data(No NAs)</th>
+          <th class="tr f6 ttu fw6 pv2 ph3">Last Update</th>
         </tr>
         <tr class="striped--near-white" v-for="(cite, idx) in cites" :key="idx">
           <td class="pv2 ph3">
             <nuxt-link :to="{ path: `cite/edit/${cite.id}` }">
-              <a class="link dim gray    b f6 f5-ns dib mr3" title="About">
-                {{cite.bizName}} - {{cite.id}}
-              </a>
+              <a class="link dim gray    b f6 f5-ns dib mr3" title="About">{{cite.account}}: {{cite.bizName}} </a>
             </nuxt-link>
-            
           </td>
           <td class="pv2 ph3">{{cite.actual}}</td>
           <td class="pv2 ph3">{{cite.meterDay}}</td>
           <td class="pv2 ph3">{{cite.officeType}}</td>
-          <td class="pv2 ph3">{{cite.refName}}</td>
-          <td class="pv2 ph3">{{cite.status}}</td>
+          <td class="pv2 ph3">
+            <a :href="cite.dataLink">Download</a>
+          </td>
+          <td class="pv2 ph3">
+            <a :href="cite.dataNALink">Download</a>
+          </td>
+          <td class="pv2 ph3">...</td>
         </tr>
       </tbody></table>
     </section>

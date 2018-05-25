@@ -16,17 +16,16 @@ module.exports = {
     '~/node_modules/swiper/dist/css/swiper.css'],
   
   plugins:[
-    // { src: '~/plugins/swiper.js', ssr: false },
-    { src: '~/plugins/fbConn.js', ssr: false },
+    // { src: '~/plugins/fbConn.js', ssr: false },
+    '~/plugins/fbConn.js',
     { src: '~/plugins/elastic.js', ssr: false },
-    // { src: '~/plugins/firebaseui.js', ssr: false },
-    // { src: '~/plugins/axios.js', ssr: false }
   ],
   build: {
     vendor: ['axios', 
-    'firebase'
+    'firebase',
+    'firebaseui'
     //'vue-monaco'
-  ],
+    ],
   },
   serverMiddleware: [
     '~/server/api/logger'

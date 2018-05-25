@@ -24,9 +24,10 @@
 // export const database = fbDatabase
 // export const storage = fbStorage
 
-import firebase from '@firebase/app';
-import '@firebase/database'
-import '@firebase/storage'
+import * as firebase from 'firebase/app';
+import 'firebase/database'
+import 'firebase/storage'
+import 'firebase/auth'
 
 const config = {
     apiKey: "AIzaSyBqqizAIlO1cMBgi3l7MiweH5V4gy9zCdc",
@@ -46,7 +47,10 @@ if (!firebase.apps.length) {
 }
 // !firebase.apps.length ? firebase.initializeApp(config) : ''
 
+
 // // Export the database for components to use.
 // // If you want to get fancy, use mixins or provide / inject to avoid redundant imports.
 export const database = firebase.database() //fbDatabase
 export const storage = firebase.storage()
+export const auth = firebase.auth()
+export const firebase_ = firebase

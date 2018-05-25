@@ -1,8 +1,9 @@
+<!-- 5/25 Kevin : update -->
 <template>
-  <section>
+  <section class="sans-serif">
     <header-nav></header-nav>
     <section class="ma3">
-      <h2> 사이트 수정 </h2>
+      <h2> 사이트 정보 수정 </h2>
       <form> 
       <fieldset>     
         <div>
@@ -17,6 +18,16 @@
           <input v-model="citeInfo.account" />
           <label>패스워드</label>
           <input v-model="citeInfo.pw" />
+        </div>
+        <hr>
+        <small> 데이터 </small>
+        <div>
+          <label>데이터 링크 </label>
+          <input v-model="citeInfo.dataLink" />
+          <label>데이터 링크 (without NA)</label>
+          <input v-model="citeInfo.dataNALink" />
+          <label>마지막 업데이트 </label>
+          <input v-model="citeInfo.lastUpdate" />
         </div>
         <hr>
         <div> 
@@ -62,7 +73,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import { database, storage } from '~/plugins/fbConn'
-import Header from '~/components/Header'
+import Header from '~/components/HeaderPostech'
 
 export default {
   name: "editCite",
@@ -80,7 +91,7 @@ export default {
         getCiteByID : 'datasetModule/getCiteByID',
         updateCite: 'datasetModule/updateCite'
       }),
-    },
+  },
   mounted(){
     this.getCiteByID(this.$route.params.id)
   }

@@ -26,6 +26,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import Header from '~/components/HeaderPostech'
+
 export default {
   name: 'Main',
   components: {

@@ -1,4 +1,4 @@
-import Vue from 'vue'
-import MonacoEditor from 'vue-monaco'
+// import Vue from 'vue'
+// import MonacoEditor from 'vue-monaco'
 
-Vue.use(MonacoEditor)
+// Vue.use(MonacoEditor)

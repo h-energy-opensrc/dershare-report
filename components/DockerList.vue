@@ -4,3 +4,4 @@
     <p> Shows running docker container detail information </p>
   </section>
 </template>
+<script></script>

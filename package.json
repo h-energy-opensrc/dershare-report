@@ -12,9 +12,10 @@
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
   },
   "dependencies": {
+    "@casl/ability": "^2.3.0",
+    "@casl/vue": "^0.2.0",
     "async": "2.6.0",
     "axios": "^0.16.2",
-    "bluebird": "3.5.1",
     "cross-env": "^5.0.1",
     "csvtojson": "1.1.9",
     "d3": "4.13.0",
@@ -22,32 +23,30 @@
     "elasticsearch": "^15.0.0",
     "express": "^4.15.3",
     "firebase": "4.10.0",
-    "monaco-editor": "^0.10.1",
     "nuxt": "1.3.0",
+    "prettier": "^1.12.1",
     "socket.io": "2.0.4",
     "socket.io-client": "2.0.4",
     "source-map-support": "^0.4.15",
     "swiper": "4.0.7",
-    "tachyons": "^4.9.1",
-    "uuid4": "1.0.0",
-    "vue-awesome-swiper": "3.1.0",
-    "vue-monaco": "0.1.6",
-    "vue-monaco-editor": "^0.0.19",
     "vue-swiper": "0.5.0",
-    "vue-webcam": "2.0.4",
     "vuex": "^3.0.1",
     "xmlhttprequest": "^1.8.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
     "backpack-core": "^0.4.1",
-    "eslint": "4.18.0",
+    "eslint": "^4.3.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-loader": "^1.9.0",
     "eslint-plugin-html": "^3.1.1",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-node": "^5.1.1",
     "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-standard": "^3.0.1"
+    "eslint-plugin-standard": "^3.0.1",
+    "tachyons": "^4.9.1"
+  },
+  "resolutions": {
+    "@vue/component-compiler-utils/prettier": "1.12.1"
   }
 }

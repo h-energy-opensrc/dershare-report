@@ -34,7 +34,7 @@
           <label>적용전력</label>
           <input v-model="citeInfo.applied" />
           <label>계약전력</label>
-          <input v-model="citeInfo.actual" />
+          <input type="number" v-model.number="citeInfo.actual" />
           <label>계약종별</label>
           <input v-model="citeInfo.type" />
         </div>
@@ -60,6 +60,13 @@
         <input v-model="citeInfo.refName" />
         <label>Status</label>
         <input v-model="citeInfo.status" />
+        <label>Availability</label>
+        <input type="checkbox" v-model="citeInfo.avail" />
+
+      </fieldset>
+      <fieldset>
+        <label>Data Link</label>
+        <input v-model.trim="citeInfo.datalink" />
       </fieldset>
     </form>
     <hr>

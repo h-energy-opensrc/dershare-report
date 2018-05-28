@@ -19,6 +19,13 @@
         <a href="https://firebasestorage.googleapis.com/v0/b/postechproject.appspot.com/o/iSmart%2Fc5.na.csv?alt=media&token=1b15de60-9514-4f39-9c12-de13fa3a813a" download> C5.NA </a>
         <a href="https://firebasestorage.googleapis.com/v0/b/postechproject.appspot.com/o/iSmart%2Fc6.na.csv?alt=media&token=d0442c2e-ea98-4f22-b9a4-b451987a9a33" download> C6.NA </a>
       </div>
+
+
+      <!-- <div class="view">
+        <input class="toggle" type="checkbox" v-model="todo.completed" v-if="$can('update', todo)">
+        <label @dblclick="$can('update', todo) && editTodo(todo)">{{ todo.title }}</label>
+        <button class="destroy" v-if="$can('delete', todo)" @click="removeTodo(todo)"></button>
+      </div> -->
     </section>
   </section>
 </template>
@@ -49,6 +56,10 @@ export default {
       this.online = false
       return
     }
+    
+    console.log(this.$can('cite-delete', "superUser"))
+    console.log(this.$can('cite-delete', "citeManager"))
+    
     this.online = Boolean(window.navigator.onLine)
     window.addEventListener('offline', this._toggleNetworkStatus)
     window.addEventListener('online', this._toggleNetworkStatus)

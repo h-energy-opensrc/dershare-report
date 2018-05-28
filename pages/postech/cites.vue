@@ -15,6 +15,7 @@
           <th class="tr f6 ttu fw6 pv2 ph3">Data</th>
           <th class="tr f6 ttu fw6 pv2 ph3">Data(No NAs)</th>
           <th class="tr f6 ttu fw6 pv2 ph3">Last Update</th>
+          <th class="tr f6 ttu fw6 pv2 ph3">Avail</th>
         </tr>
         <tr class="striped--near-white" v-for="(cite, idx) in cites" :key="idx">
           <td class="pv2 ph3">
@@ -32,6 +33,7 @@
             <a :href="cite.dataNALink">Download</a>
           </td>
           <td class="pv2 ph3">...</td>
+          <td class="pv2 ph3">{{cite.avail}}</td>
         </tr>
       </tbody></table>
     </section>

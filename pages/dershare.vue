@@ -65,8 +65,8 @@
               <div class="mv2  measure">
                 <label for="name" class="f6 b db mb2"> 어카운트 </label>
               <select v-model="selected" @change="changeAcc(selected)">
-                <option v-for="(option, idx) in accounts" :key="idx" v-bind:value="option">
-                  Acc: {{ option.id }}: {{option.contract_demand}} kW
+                <option v-if="option.avail" v-for="(option, idx) in cites" :key="idx" v-bind:value="option">
+                  Acc: {{ option.account }}: {{option.actual}} kW
                 </option>
               </select>
               </div>
@@ -281,6 +281,8 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
 import HeaderMenu from "~/components/Header.vue";
 import Report from "~/components/Report.vue";
 import _ from 'lodash';
@@ -415,12 +417,19 @@ export default {
       socket: {},
       containers: [],
       msg_docker_result: "",
-      host: "35.200.80.26:3001"
-      // host: "0.0.0.0:3001"
+      // host: "35.200.80.26:3001"
+      host: "0.0.0.0:3001"
     };
+  },
+  computed: {
+    ...mapGetters({
+      datasets: 'datasetModule/getAllDatasets',
+      cites: 'datasetModule/getCites',
+    })
   },
   mounted() {
     var vm = this;
+    vm.getAllCites()
     vm.socket = io.connect(vm.host);
     vm.socket.on("connect", function(data) {
       vm.socket.emit("join", "Hello World from client");
@@ -475,10 +484,13 @@ export default {
     vm.listContainers();
   },
   methods: {
+    ...mapActions({
+        getAllCites : 'datasetModule/getAllCites', // map `this.increment()` to `this.$store.dispatch('increment')`
+    }),
     changeAcc(){
       var vm = this
-      vm.input_feasible.measure_csv = `./ts/${vm.selected.id}.na.csv`
-      vm.input_feasible.contract_demand = vm.selected.contract_demand
+      vm.input_feasible.measure_csv = `./ts/${vm.selected.account}.na.csv`
+      vm.input_feasible.contract_demand = vm.selected.actual
     },
     dataExplore() {
       var vm = this;

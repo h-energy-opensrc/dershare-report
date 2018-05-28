@@ -20,11 +20,11 @@
       <p class="ma2"> 사용자 등록 </p>
       <div class="mv2  measure">
         <label for="name" class="f6 b db mb2"> 사용자 이메일 </label>
-        <input type="text" v-model="userId" id="id" class="input-reset ba b--black-20 pa2 mb2 db w-100" aria-describedby="name-desc">
+        <input type="text" v-model="userId" class="input-reset ba b--black-20 pa2 mb2 db w-100" aria-describedby="name-desc">
       </div>
       <div class="mv2  measure">
         <label for="name" class="f6 b db mb2"> 비밀번호 </label>
-        <input type="password" v-model="userPW" id="pw" class="input-reset ba b--black-20 pa2 mb2 db w-100" aria-describedby="name-desc">
+        <input type="password" v-model="userPW" class="input-reset ba b--black-20 pa2 mb2 db w-100" aria-describedby="name-desc">
       </div>
     </div>
     <div>
@@ -39,25 +39,38 @@
 //   var firebaseui = require("firebaseui");
 // }
 
+import { mapGetters, mapActions } from 'vuex'
 import { firebase_, auth } from "~/plugins/fbConn";
 
 export default {
   methods: {
-    login() {
-      var email = "pbshop1001@gmail.com";
-      var password = "runy1001";
-      auth.signInWithEmailAndPassword(email, password).catch(function(error) {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-      });
-    },
-    logout() {
-      auth.signOut();
-    },
+    ...mapActions({
+        login : 'userModule/login', // map `this.increment()` to `this.$store.dispatch('increment')`
+        logout : 'userModule/logout', // map `this.increment()` to `this.$store.dispatch('increment')`
+        getUserInfo: 'userModule/getUserInfo'
+    }),
+    // login() {
+    //   var email = "pbshop1001@gmail.com";
+    //   var password = "runy1001";
+    //   auth.signInWithEmailAndPassword(email, password).catch(function(error) {
+    //     var errorCode = error.code;
+    //     var errorMessage = error.message;
+    //     console.log(errorCode, errorMessage);
+    //   });
+    // },
+    // logout() {
+    //   auth.signOut();
+    // },
     createAcc() {}
   },
+  data(){
+    return{
+      userId: "",
+      userPW: ""
+    }
+  },
   mounted() {
+    var vm = this;
     auth.onAuthStateChanged(
       function(user) {
         if (user) {
@@ -70,12 +83,7 @@ export default {
           var phoneNumber = user.phoneNumber;
           var providerData = user.providerData;
           user.getIdToken().then(function(accessToken) {
-            document.getElementById("sign-in-status").textContent = "Signed in";
-            document.getElementById("sign-in").textContent = "Sign out";
-            document.getElementById(
-              "account-details"
-            ).textContent = JSON.stringify(
-              {
+            vm.getUserInfo({
                 displayName: displayName,
                 email: email,
                 emailVerified: emailVerified,
@@ -84,10 +92,7 @@ export default {
                 uid: uid,
                 accessToken: accessToken,
                 providerData: providerData
-              },
-              null,
-              "  "
-            );
+            })
           });
         } else {
           // User is signed out.

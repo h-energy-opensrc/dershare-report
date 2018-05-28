@@ -1,10 +1,6 @@
 <template>
   <section class="main">
     <h1 class="f2 code title">H-Energy</h1>
-<!--   
-    <login></login>
-    <docker-list></docker-list> -->
-    
     <div class="avenir pa5 ma2" style="max-width: 950px; margin: 0px auto">
       <p> 데이터 시각화, 분석, 파이프라인 에너지비용 시뮬레이션 Reports</p>
       <ul class="pa2">
@@ -14,17 +10,15 @@
         </li>
       </ul>
     </div>
-    
     <article class="cf avenir">
       <div style="" class="fl w-100 bg-near-white">      
-        <!-- Feature List  -->
         <div 
           v-for="(cnt, idx) in cnts" :key="idx"
           class="bg-near-white pa5 ma2" 
           style="max-width: 950px; margin: 0px auto">
           <h3 class=f3> {{cnt.name}} </h3>
-          <ul class="ma2">
-            <li v-for="(ch, cIdx) in cnt.child" :key="cIdx"> {{ch.name}}: {{ch.desc}}</li>
+          <ul class="list db ma2">
+            <li class="db" v-for="(ch, cIdx) in cnt.child" :key="cIdx"> {{ch.name}}: {{ch.desc}}</li>
           </ul>
         </div>
       </div>

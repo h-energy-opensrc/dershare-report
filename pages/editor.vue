@@ -12,7 +12,7 @@
 <script>
 
 if (process.BROWSER_BUILD) {
-  var MonacoEditor = require('vue-monaco')
+  // var MonacoEditor = require('vue-monaco')
 }
 // import MonacoEditor from 'vue-monaco-editor'
 // import MonacoEditor from 'vue-monaco'
@@ -20,9 +20,9 @@ if (process.BROWSER_BUILD) {
 // use in component
 export default {
 
-  components: {
-    MonacoEditor
-  },
+  // components: {
+  //   MonacoEditor
+  // },
     data() {
         return {
         code: 'const noop = () => {}'

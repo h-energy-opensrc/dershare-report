@@ -12,13 +12,14 @@ module.exports = {
     ]
   },
   
-  css: ['~/assets/css/main.css', '~/node_modules/tachyons/css/tachyons.min.css', 
+  css: ['~/assets/css/main.css', 'tachyons/css/tachyons.min.css', 
     '~/node_modules/swiper/dist/css/swiper.css'],
   
   plugins:[
     // { src: '~/plugins/fbConn.js', ssr: false },
     '~/plugins/fbConn.js',
     { src: '~/plugins/elastic.js', ssr: false },
+    { src: '~/plugins/casl.js', ssr: false },
   ],
   build: {
     vendor: ['axios', 

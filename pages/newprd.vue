@@ -91,9 +91,9 @@ import {database, storage} from '~/plugins/fbConn'
 // import firebase from 'firebase'
 import auto from 'async/auto'
 import Header from '~/components/Header'
-var uuid = require('uuid4')
+// var uuid = require('uuid4')
 import _ from 'lodash'
-import Quagga from 'quagga'
+// import Quagga from 'quagga'
 // var Quagga = require('quagga').default
 
 // var fb

@@ -19,7 +19,7 @@ module.exports = {
     // { src: '~/plugins/fbConn.js', ssr: false },
     '~/plugins/fbConn.js',
     { src: '~/plugins/elastic.js', ssr: false },
-    { src: '~/plugins/casl.js', ssr: false },
+    // { src: '~/plugins/casl.js', ssr: false },
   ],
   build: {
     vendor: ['axios', 
